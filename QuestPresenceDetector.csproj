@@ -1,0 +1,95 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>QuestPresenceDetector</AssemblyName>
+    <RootNamespace>QuestPresenceDetector</RootNamespace>
+    <LangVersion>latest</LangVersion>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Bundles\qpd_assets_all.bundle" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Bundles\qpd_assets_all.bundle" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>References\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>References\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>References\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Comfort">
+      <HintPath>References\Comfort.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="spt-reflection">
+      <HintPath>References\spt-reflection.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>References\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>References\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>References\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>References\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>References\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>References\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>References\Sirenix.Serialization.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>References\UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+	<Target Name="ZipRelease" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Release'">
+		<PropertyGroup>
+			<InternalPath>BepInEx\Plugins\$(ProjectName)\</InternalPath>
+			<StagingDir>$(TargetDir)Staging\</StagingDir>
+			<FullStagingPath>$(StagingDir)$(InternalPath)</FullStagingPath>
+			<ZipFileOutputPath>$(ProjectDir)$(ProjectName).zip</ZipFileOutputPath>
+		</PropertyGroup>
+
+		<RemoveDir Directories="$(StagingDir)" />
+		<Delete Files="$(ZipFileOutputPath)" />
+
+		<MakeDir Directories="$(FullStagingPath)" />
+
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(FullStagingPath)" />
+		<Copy SourceFiles="$(ProjectDir)LICENSE.md" DestinationFolder="$(FullStagingPath)" />
+
+		<ZipDirectory SourceDirectory="$(StagingDir)" DestinationFile="$(ZipFileOutputPath)" Overwrite="true" />
+
+		<RemoveDir Directories="$(StagingDir)" />
+	</Target>
+
+</Project>
