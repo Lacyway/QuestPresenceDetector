@@ -21,7 +21,7 @@ internal sealed class QPD_LootItem_Patch : ModulePatch
         if (item != null && item.QuestItem && __instance.isActiveAndEnabled)
         {
             var newObj = new GameObject($"{__instance.gameObject.name}_qpd_tracker");
-            var comp = newObj.AddComponent<QPD_Component>();
+            var comp = newObj.AddComponent<QPDComponent>();
             comp.SetItem(__instance.gameObject, item.LocalizedName());
             newObj.transform.SetPositionAndRotation(__instance.gameObject.transform.position, __instance.gameObject.transform.rotation);
         }
