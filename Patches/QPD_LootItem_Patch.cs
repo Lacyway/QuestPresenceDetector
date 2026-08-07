@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using EFT;
 using EFT.Interactive;
 using EFT.InventoryLogic;
 using QuestPresenceDetector.Components;

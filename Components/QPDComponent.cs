@@ -62,7 +62,7 @@ internal sealed class QPDComponent : TriggerWithId
                 QPDInterface.Instance.SetData(player, _item.transform, _radius);
                 if (QPDPlugin.ShowNotification.Value)
                 {
-                    NotificationManagerClass.DisplayMessageNotification($"Nearing objective item '{_name}'", iconType: ENotificationIconType.Quest);
+                    NotificationManager.DisplayMessageNotification($"Nearing objective item '{_name}'", iconType: ENotificationIconType.Quest);
                 }
             }
         }

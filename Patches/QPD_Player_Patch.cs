@@ -13,7 +13,7 @@ internal sealed class QPD_Player_Patch : ModulePatch
     protected override MethodBase GetTargetMethod()
     {
         return typeof(Player)
-            .GetMethod(nameof(Player.method_83));
+            .GetMethod(nameof(Player.InitWeaponMountingComponent));
     }
 
     [PatchPostfix]
