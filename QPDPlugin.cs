@@ -9,7 +9,7 @@ namespace QuestPresenceDetector;
 [BepInPlugin("com.lacyway.qpd", "QuestPresenceDetector", _version)]
 internal sealed class QPDPlugin : BaseUnityPlugin
 {
-    private const string _version = "1.1.0";
+    private const string _version = "1.1.1";
 
     internal static ManualLogSource QPD_Logger;
     internal static InternalBundleLoader QPD_InternalBundleLoader;
